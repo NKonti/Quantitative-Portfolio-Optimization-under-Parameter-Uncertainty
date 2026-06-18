@@ -1,18 +1,9 @@
-# ============================================================
-# QUANT PROJECT - DATA PIPELINE + DATA LOADER
-# ============================================================
-# Ziel:
-# 1) Falls der Forecast-Datensatz schon existiert -> direkt laden
-# 2) Falls nicht -> Rohdaten laden, Features bauen, CSV speichern
-# 3) Danach Exploratory Data Analysis / Korrelationen ausgeben
-# ============================================================
-
 import os
 import warnings
 warnings.filterwarnings("ignore")
 
 import matplotlib
-matplotlib.use("Agg")   # robustes Backend, speichert Plots sauber
+matplotlib.use("Agg")   
 
 import numpy as np
 import pandas as pd
