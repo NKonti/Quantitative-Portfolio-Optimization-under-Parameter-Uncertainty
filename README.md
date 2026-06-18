@@ -115,7 +115,8 @@ Uses a covariance-based robustness penalty to reduce sensitivity to distribution
 
 ### Stochastic Optimization (STOCH)
 
-Optimizes portfolio weights across multiple historical return scenarios by balancing expected scenario return and s
+Optimizes portfolio weights across multiple historical return scenarios by balancing expected scenario return and scenario volatility.
+
 ---
 
 ## Portfolio Constraints
