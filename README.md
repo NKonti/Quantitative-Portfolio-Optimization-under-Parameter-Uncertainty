@@ -306,17 +306,14 @@ Annualized Return
 Annualized Volatility
 Sharpe Ratio
 
-============================================================
-FINAL REALISTIC MODEL COMPARISON
-============================================================
-      model  annualized_return  annualized_volatility  sharpe_ratio
-rank                                                               
-1        eq           0.091577               0.104076      0.879900
-2        mv           0.087573               0.104097      0.841266
-3       ell           0.082396               0.098495      0.836547
-4     stoch           0.062241               0.074616      0.834155
-5       dro           0.075691               0.091148      0.830426
 
+| Rank | Model | Annualized Return | Annualized Volatility | Sharpe Ratio |
+|------|--------|------------------:|----------------------:|-------------:|
+| 1 | Equal Weight (EQ) | 9.16% | 10.41% | 0.880 |
+| 2 | Mean-Variance (MV) | 8.76% | 10.41% | 0.841 |
+| 3 | Ellipsoidal Robust (ELL) | 8.24% | 9.85% | 0.837 |
+| 4 | Stochastic Optimization (STOCH) | 6.22% | 7.46% | 0.834 |
+| 5 | Distributionally Robust (DRO) | 7.57% | 9.11% | 0.830 |
 
 Final Conclusion
 
