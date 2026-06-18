@@ -225,5 +225,3 @@ Among the optimization-based approaches, Stochastic Optimization delivered the s
 The findings suggest that parameter uncertainty remains a major challenge in practical portfolio construction. Even when expected returns are generated using machine-learning forecasts, advanced optimization techniques remain highly sensitive to estimation error.
 
 Consequently, the choice of portfolio construction method should be aligned with the investor's objectives and risk preferences rather than with the expectation that increasingly sophisticated optimization techniques will automatically generate superior investment outcomes.
-
-Overall, the study provides empirical evidence that simple diversification remains a highly competitive benchmark, even when advanced forecasting models and portfolio optimization frameworks are employed.
