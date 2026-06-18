@@ -1,14 +1,3 @@
-# ============================================================
-# QUANT PROJECT - FORECASTING MODEL SELECTION
-# ============================================================
-# Ziel:
-# 1) Rolling Out-of-Sample Return Forecasts erzeugen
-# 2) OLS, Random Forest und XGBoost vergleichen
-# 3) Fokus: absolute Renditeprognose
-# 4) Bewertung mit RMSE, MAE und IC
-# 5) Bestes Modell als Expected-Return-Schätzer auswählen
-# ============================================================
-
 import warnings
 warnings.filterwarnings("ignore")
 
