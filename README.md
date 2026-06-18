@@ -278,4 +278,4 @@ From an economic perspective, Stochastic Optimization may therefore represent th
 
 The empirical results suggest that no portfolio construction method was universally superior. The Equal Weight portfolio benefited from its complete independence from parameter estimation and achieved the highest out-of-sample Sharpe Ratio. In contrast, the optimization-based approaches attempted to exploit forecasted return information and explicitly account for uncertainty, but remained dependent on the quality of the underlying return forecasts.
 
-The findings therefore highlight a fundamental trade-off between forecast exploitation, robustness and diversification. As forecast uncertainty increases, the advantages of sophisticated optimization methods may diminish, while simpler diversification approaches become increasingly competitive.
+
