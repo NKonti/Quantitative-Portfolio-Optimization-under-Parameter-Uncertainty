@@ -107,15 +107,15 @@ Optimizes the trade-off between forecasted expected return and portfolio varianc
 
 ### Ellipsoidal Robust Optimization (ELL)
 
-Adds a robustness penalty based on expected-return estimation uncertainty.
+Optimizes against the worst-case expected return realization within an ellipsoidal uncertainty set.
 
 ### Distributionally Robust Optimization (DRO)
 
-Adds a robustness penalty based on overall return uncertainty.
+Optimizes against adverse return distributions within a distributional ambiguity set.
 
 ### Stochastic Optimization (STOCH)
 
-Optimizes portfolio weights across historical return scenarios by balancing scenario-based expected return and scenario volatility.
+Optimizes portfolio weights across multiple historical return scenarios without imposing a predefined worst-case uncertainty set.
 
 ---
 
