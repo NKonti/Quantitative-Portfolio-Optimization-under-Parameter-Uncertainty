@@ -1,3 +1,30 @@
+# ============================================================
+# QUANT PROJECT - DATA PIPELINE & FEATURE ENGINEERING
+# ============================================================
+# Purpose:
+# 1) Download and preprocess historical ETF market data
+# 2) Construct a diversified multi-asset investment universe
+# 3) Generate momentum, volatility, and drawdown features
+# 4) Create next-month return targets for forecasting
+# 5) Build a clean panel dataset for machine learning models
+# 6) Perform exploratory data analysis and feature diagnostics
+# 7) Export all datasets required for forecasting and
+#    portfolio optimization
+#
+# Output Files:
+# - forecast_dataset_monthly.csv
+# - prices_monthly.csv
+# - returns_monthly.csv
+# - dataset_preview.csv
+# - correlation matrices and diagnostic plots
+#
+# Research Context:
+# The generated dataset serves as the foundation for
+# forecasting expected returns under parameter uncertainty,
+# which are subsequently used in the portfolio optimization
+# stage of the project.
+# ============================================================
+
 import os
 import warnings
 warnings.filterwarnings("ignore")
