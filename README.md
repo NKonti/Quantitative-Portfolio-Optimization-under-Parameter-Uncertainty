@@ -64,7 +64,7 @@ Monthly return forecasts are generated using:
 
 * 12-Month Maximum Drawdown
 
-Target variable:
+### Target Variable
 
 * Next-month ETF return
 
@@ -89,7 +89,7 @@ Forecast quality was evaluated using:
 
 Monthly ETF returns proved difficult to predict using historical momentum, volatility, and drawdown information.
 
-Among the tested models, **XGBoost achieved the lowest out-of-sample forecasting error** and was selected for the portfolio construction stage.
+Among the tested models, XGBoost achieved the lowest out-of-sample forecasting error and was selected for the portfolio construction stage.
 
 ---
 
@@ -111,7 +111,7 @@ Optimizes against the worst-case expected return realization within an ellipsoid
 
 ### Distributionally Robust Optimization (DRO)
 
-Optimizes against adverse return distributions within a distributional ambiguity set.
+Uses an additional robustness penalty to reduce portfolio sensitivity to uncertainty in asset returns.
 
 ### Stochastic Optimization (STOCH)
 
@@ -137,10 +137,10 @@ The optimization framework incorporates realistic portfolio management constrain
 A walk-forward backtest was conducted:
 
 1. Forecast expected returns using XGBoost
-2. Estimate covariance matrix
+2. Estimate covariance matrices
 3. Optimize portfolio weights
 4. Apply turnover constraints and transaction costs
-5. Observe realized returns
+5. Observe realized next-month returns
 6. Repeat monthly until the end of the sample
 
 All reported results are strictly out-of-sample.
@@ -184,9 +184,6 @@ The remaining optimization frameworks occupied an intermediate position, providi
 
 Consequently, the preferred portfolio construction method depends on the investor's objective function rather than on a universally optimal solution.
 
-Investors seeking the highest risk-adjusted return would prefer the Equal Weight portfolio.
-Investors prioritizing stability and volatility reduction may prefer the Stochastic Optimization approach.
-Investors concerned about parameter uncertainty may favor Robust or Distributionally Robust Optimization frameworks.
+Investors seeking the highest risk-adjusted return would prefer the Equal Weight portfolio. Investors prioritizing stability and volatility reduction may prefer the Stochastic Optimization approach. Investors seeking more conservative portfolio allocations may favor Robust or Distributionally Robust Optimization approaches.
 
 Overall, the results suggest that the choice of portfolio construction method should be aligned with the investor's risk preferences, investment horizon, and tolerance for estimation uncertainty rather than with a single performance metric.
-
