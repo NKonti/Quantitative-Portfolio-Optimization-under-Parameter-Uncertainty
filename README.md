@@ -159,15 +159,6 @@ All reported results are strictly out-of-sample.
 
 ---
 
-## Key Findings
-
-* Equal Weight achieved the highest out-of-sample Sharpe Ratio.
-* Advanced optimization techniques did not consistently outperform simple diversification.
-* Robust optimization methods reduced sensitivity to estimation error.
-* Stochastic optimization generated the lowest portfolio volatility.
-* Portfolio construction outcomes strongly depend on investor objectives and risk preferences.
-
-
 ## Technologies Used
 
 * Python
