@@ -183,10 +183,10 @@ All reported results are strictly out-of-sample.
 | Rank | Model                           | Annualized Return | Annualized Volatility | Sharpe Ratio |
 | ---- | ------------------------------- | ----------------- | --------------------- | ------------ |
 | 1    | Equal Weight (EQ)               | 9.16%             | 10.41%                | 0.880        |
-| 2    | Mean-Variance (MV)              | 8.76%             | 10.41%                | 0.841        |
-| 3    | Ellipsoidal Robust (ELL)        | 8.24%             | 9.85%                 | 0.837        |
-| 4    | Stochastic Optimization (STOCH) | 6.22%             | 7.46%                 | 0.834        |
-| 5    | Distributionally Robust (DRO)   | 7.57%             | 9.11%                 | 0.830        |
+| 2    | Stochastic Optimization (STOCH) | 6.03%             | 7.61%                 | 0.792        |
+| 3    | Distributionally Robust (DRO)   | 6.92%             | 9.85%                 | 0.703        |
+| 4    | Mean-Variance (MV)              | 7.83%             | 11.41%                | 0.686        |
+| 5    | Ellipsoidal Robust (ELL)        | 7.35%             | 10.83%                | 0.678        |
 
 ---
 
