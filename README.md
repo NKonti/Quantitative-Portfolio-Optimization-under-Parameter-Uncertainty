@@ -218,8 +218,6 @@ Parameters:
 
 The results do not support the existence of a universally superior portfolio construction method under parameter uncertainty.
 
-Expected returns were first estimated using a Random Forest forecasting model and subsequently incorporated into several advanced portfolio optimization frameworks. Despite the use of machine-learning-based forecasts and sophisticated optimization techniques, none of the optimized portfolios consistently outperformed the naive Equal Weight benchmark on a risk-adjusted basis.
-
 Across all tested approaches, the Equal Weight portfolio achieved the highest out-of-sample Sharpe Ratio of 0.880 and generated the strongest risk-adjusted performance over the observation period. This finding highlights the remarkable robustness of simple diversification when expected returns must be estimated rather than assumed to be known.
 
 Among the optimization-based approaches, Stochastic Optimization delivered the strongest performance, achieving a Sharpe Ratio of 0.792 while simultaneously generating the lowest portfolio volatility. Distributionally Robust Optimization, Mean-Variance Optimization, and Ellipsoidal Robust Optimization produced weaker risk-adjusted results despite explicitly accounting for estimation uncertainty.
