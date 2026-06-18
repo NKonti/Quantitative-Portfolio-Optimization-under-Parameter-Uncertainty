@@ -10,24 +10,23 @@
 #   - Distributionally Robust Optimization (DRO)
 #   - Stochastic Optimization
 #
-# Realistic Features:
-#   - Budget Allocation
-#   - Transaction Costs
-#   - Turnover Constraint
-#   - Diversification Penalty
-#   - Maximum Weight Constraint
-#   - Solver Tolerance Correction
+# Forecast Model:
+#   - Random Forest
+#   - Selected based on strongest independent test performance
+#   - Parameters:
+#       max_depth = 2
+#       min_samples_leaf = 10
+#       n_estimators = 200
 # ============================================================
 
 import warnings
 warnings.filterwarnings("ignore")
 
-
-
 import numpy as np
 import pandas as pd
 import cvxpy as cp
-from xgboost import XGBRegressor
+
+from sklearn.ensemble import RandomForestRegressor
 
 # ============================================================
 # SETTINGS
@@ -49,7 +48,7 @@ max_weight = 0.30
 # ============================================================
 
 dataset = pd.read_csv("forecast_dataset_monthly.csv", parse_dates=["date"])
-dataset = dataset.sort_values(["date", "asset"])
+dataset = dataset.sort_values(["date", "asset"]).reset_index(drop=True)
 
 returns_monthly = pd.read_csv(
     "returns_monthly.csv",
@@ -103,7 +102,9 @@ for i in range(start_idx, len(dates) - 1):
     date = dates[i]
     next_date = dates[i + 1]
 
-    train = dataset[dataset["date"] < date]
+    train = dataset[dataset["date"] < date].dropna(
+        subset=features + [target]
+    ).copy()
 
     current = (
         dataset[dataset["date"] == date]
@@ -131,17 +132,13 @@ for i in range(start_idx, len(dates) - 1):
     hist_mean = hist.mean().values
 
     # ========================================================
-    # FORECAST MODEL
+    # FORECAST MODEL: RANDOM FOREST
     # ========================================================
 
-    model = XGBRegressor(
-        n_estimators=300,
-        max_depth=1,
-        learning_rate=0.05,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        reg_alpha=1.0,
-        reg_lambda=1.0,
+    model = RandomForestRegressor(
+        n_estimators=200,
+        max_depth=2,
+        min_samples_leaf=10,
         random_state=42,
         n_jobs=-1
     )
@@ -178,14 +175,21 @@ for i in range(start_idx, len(dates) - 1):
             constraints.append(turnover <= turnover_limit)
 
         problem = cp.Problem(obj, constraints)
-        problem.solve(solver=cp.CLARABEL, verbose=False)
+
+        try:
+            problem.solve(solver=cp.CLARABEL, verbose=False)
+        except Exception:
+            problem.solve(solver=cp.SCS, verbose=False)
 
         if w.value is None:
             raise RuntimeError(f"Optimization failed at date {date}")
 
         weights = np.asarray(w.value).flatten()
-
         weights = np.maximum(weights, 0)
+
+        if weights.sum() == 0:
+            raise RuntimeError(f"All weights zero at date {date}")
+
         weights = weights / weights.sum()
 
         return weights
@@ -337,6 +341,8 @@ summary_df = summary_df[
 
 print("\n============================================================")
 print("FINAL REALISTIC MODEL COMPARISON")
+print("FORECAST MODEL: RANDOM FOREST")
+print("PARAMETERS: max_depth=2, min_samples_leaf=10, n_estimators=200")
 print("============================================================")
 print(summary_df)
 print("============================================================")
@@ -377,6 +383,20 @@ allocation_df = (
 
 print("\n============================================================")
 print(f"FINAL TARGET ALLOCATION BASED ON BUDGET = {budget:,.2f}")
+print("FORECAST MODEL: RANDOM FOREST")
 print("============================================================")
 print(allocation_df)
 print("============================================================")
+
+# ============================================================
+# SAVE OUTPUTS
+# ============================================================
+
+df.to_csv("backtest_returns_random_forest.csv")
+summary_df.to_csv("backtest_summary_random_forest.csv", index=True)
+allocation_df.to_csv("final_target_allocation_random_forest.csv", index=False)
+
+print("\nDateien gespeichert:")
+print("- backtest_returns_random_forest.csv")
+print("- backtest_summary_random_forest.csv")
+print("- final_target_allocation_random_forest.csv")
