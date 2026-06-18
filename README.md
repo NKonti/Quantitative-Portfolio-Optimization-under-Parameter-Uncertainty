@@ -216,12 +216,66 @@ Parameters:
 
 ## Conclusion
 
-The results do not support the existence of a universally superior portfolio construction method under parameter uncertainty.
+### Interpretation of Optimization Results
 
-Across all tested approaches, the Equal Weight portfolio achieved the highest out-of-sample Sharpe Ratio of 0.880 and generated the strongest risk-adjusted performance over the observation period. This finding highlights the remarkable robustness of simple diversification when expected returns must be estimated rather than assumed to be known.
+#### Equal Weight Portfolio (EQ)
 
-Among the optimization-based approaches, Stochastic Optimization delivered the strongest performance, achieving a Sharpe Ratio of 0.792 while simultaneously generating the lowest portfolio volatility. Distributionally Robust Optimization, Mean-Variance Optimization, and Ellipsoidal Robust Optimization produced weaker risk-adjusted results despite explicitly accounting for estimation uncertainty.
+The Equal Weight portfolio serves as the naïve diversification benchmark and allocates capital uniformly across all available assets:
 
-The findings suggest that parameter uncertainty remains a major challenge in practical portfolio construction. Even when expected returns are generated using machine-learning forecasts, advanced optimization techniques remain highly sensitive to estimation error.
+```text
+w_i = 1 / n
+```
 
-Consequently, the choice of portfolio construction method should be aligned with the investor's objectives and risk preferences rather than with the expectation that increasingly sophisticated optimization techniques will automatically generate superior investment outcomes.
+Unlike the optimization-based approaches, Equal Weight does not rely on expected return forecasts, covariance estimates or uncertainty sets. As a result, it is largely immune to estimation errors in both expected returns and risk parameters.
+
+The strong performance of the Equal Weight portfolio highlights an important insight from the portfolio optimization literature: when expected returns are difficult to estimate accurately, avoiding forecast-driven allocations can be advantageous. By distributing capital evenly across all assets, the portfolio benefits from broad diversification while avoiding the concentration risk that often arises when optimization models overreact to noisy forecasts.
+
+The results suggest that, within the context of this study, the robustness gained from avoiding parameter estimation outweighed the potential benefits of more sophisticated optimization techniques. Consequently, Equal Weight achieved the highest out-of-sample Sharpe Ratio and delivered the strongest overall risk-adjusted performance.
+
+---
+
+#### Mean-Variance Optimization (MV)
+
+Mean-Variance Optimization allocates capital according to the forecasted risk-return trade-off and is therefore highly sensitive to estimation errors. Even small deviations in expected return estimates may lead to materially different portfolio weights and can deteriorate out-of-sample performance.
+
+The model assumes that forecasted expected returns contain sufficiently accurate information to justify overweighting and underweighting individual assets. In practice, however, expected returns are notoriously difficult to estimate and forecasting errors can dominate the optimization process. As a result, the theoretically optimal allocation may become suboptimal once implemented on unseen future data.
+
+---
+
+#### Ellipsoidal Robust Optimization (ELL)
+
+Ellipsoidal Robust Optimization explicitly acknowledges parameter uncertainty by assuming that expected returns lie within a predefined uncertainty set. Rather than optimizing for a single estimated return vector, the model seeks a portfolio that performs reasonably well across a range of plausible return realizations.
+
+As a consequence, the optimizer adopts a more conservative allocation and penalizes portfolios that are highly dependent on specific return forecasts. While this improves robustness against estimation errors, it may also reduce exposure to genuinely attractive investment opportunities, resulting in lower realized returns.
+
+The empirical results indicate that the reduction in forecast sensitivity was not sufficient to fully compensate for the loss of return potential associated with the additional robustness penalty.
+
+---
+
+#### Distributionally Robust Optimization (DRO)
+
+Distributionally Robust Optimization extends the concept of robustness beyond the expected return vector and explicitly accounts for uncertainty in the entire return distribution.
+
+Rather than protecting only against errors in expected returns, the model seeks allocations that remain resilient under a broad range of possible probability distributions. Consequently, the resulting portfolios tend to be even more conservative and place a stronger emphasis on stability and protection against adverse scenarios.
+
+While this approach reduces exposure to model misspecification and distributional uncertainty, it also limits the optimizer's ability to exploit forecasted return opportunities. In the present study, the additional robustness reduced portfolio flexibility and ultimately resulted in lower risk-adjusted performance than the Equal Weight benchmark.
+
+---
+
+#### Stochastic Optimization (STOCH)
+
+Stochastic Optimization differs fundamentally from the robust optimization frameworks. Instead of optimizing against a worst-case realization of uncertain parameters, the model constructs a large set of plausible future scenarios and seeks a portfolio that performs well on average across those scenarios.
+
+The optimization therefore balances expected return and risk across many potential future market environments rather than focusing on a single forecast or a predefined uncertainty set. This generally leads to more diversified and stable allocations, as the portfolio is designed to remain effective under a variety of market conditions.
+
+The results show that Stochastic Optimization generated the lowest annualized portfolio volatility among all tested approaches. Although this came at the cost of lower annualized returns and a slightly lower Sharpe Ratio, the substantial reduction in portfolio risk demonstrates the effectiveness of the scenario-based framework.
+
+From an economic perspective, Stochastic Optimization may therefore represent the most attractive solution for highly risk-averse investors, institutional investors, pension funds or insurance companies whose primary objective is long-term stability rather than maximum risk-adjusted return.
+
+---
+
+### Overall Interpretation
+
+The empirical results suggest that no portfolio construction method was universally superior. The Equal Weight portfolio benefited from its complete independence from parameter estimation and achieved the highest out-of-sample Sharpe Ratio. In contrast, the optimization-based approaches attempted to exploit forecasted return information and explicitly account for uncertainty, but remained dependent on the quality of the underlying return forecasts.
+
+The findings therefore highlight a fundamental trade-off between forecast exploitation, robustness and diversification. As forecast uncertainty increases, the advantages of sophisticated optimization methods may diminish, while simpler diversification approaches become increasingly competitive.
