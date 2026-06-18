@@ -85,11 +85,42 @@ Forecast quality was evaluated using:
 * Information Coefficient (IC)
 * Rank Information Coefficient (Rank IC)
 
+### Validation Results (2019–2022)
+
+Model selection was initially performed using a dedicated validation period.
+
+| Rank | Model         | RMSE     | MAE      | Avg IC   |
+| ---- | ------------- | -------- | -------- | -------- |
+| 1    | XGBoost       | 0.056600 | 0.039687 | 0.076390 |
+| 2    | Random Forest | 0.057445 | 0.040091 | 0.033891 |
+| 3    | OLS           | 0.057557 | 0.040205 | 0.026253 |
+
+XGBoost achieved the strongest validation performance and was therefore selected as the leading candidate model.
+
+### Independent Test Results (2023–2026)
+
+The selected models were subsequently evaluated on an independent out-of-sample test period.
+
+| Rank | Model         | RMSE     | MAE      | Avg IC    | Avg Rank IC |
+| ---- | ------------- | -------- | -------- | --------- | ----------- |
+| 1    | Random Forest | 0.041205 | 0.031276 | 0.088586  | 0.065042    |
+| 2    | OLS           | 0.041402 | 0.031472 | 0.021135  | 0.000920    |
+| 3    | XGBoost       | 0.041488 | 0.031511 | -0.025185 | -0.080060   |
+
+Although XGBoost achieved the strongest validation performance, Random Forest demonstrated superior generalization on the independent test period. In particular, Random Forest achieved the lowest forecast error and substantially stronger Information Coefficients, indicating a more reliable ability to rank assets according to future returns.
+
 ### Key Finding
 
 Monthly ETF returns proved difficult to predict using historical momentum, volatility, and drawdown information.
 
-Among the tested models, XGBoost achieved the lowest out-of-sample forecasting error and was selected for the portfolio construction stage.
+While XGBoost achieved the best validation performance, Random Forest delivered the strongest independent out-of-sample results and was therefore selected as the final forecasting model for portfolio construction.
+
+Final forecasting model:
+
+* Random Forest
+* max_depth = 2
+* min_samples_leaf = 10
+* n_estimators = 200
 
 ---
 
@@ -136,7 +167,7 @@ The optimization framework incorporates realistic portfolio management constrain
 
 A walk-forward backtest was conducted:
 
-1. Forecast expected returns using XGBoost
+1. Forecast expected returns using Random Forest
 2. Estimate covariance matrices
 3. Optimize portfolio weights
 4. Apply turnover constraints and transaction costs
