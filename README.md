@@ -264,14 +264,15 @@ Stochastic Optimization differs fundamentally from the robust optimization frame
 
 The optimization therefore balances expected return and risk across many potential future market environments rather than focusing on a single forecast or a predefined uncertainty set. This generally leads to more diversified and stable allocations, as the portfolio is designed to remain effective under a variety of market conditions.
 
-The results show that Stochastic Optimization generated the lowest annualized portfolio volatility among all tested approaches. Although this came at the cost of lower annualized returns and a slightly lower Sharpe Ratio, the substantial reduction in portfolio risk demonstrates the effectiveness of the scenario-based framework.
-
-From an economic perspective, Stochastic Optimization may therefore represent the most attractive solution for highly risk-averse investors, institutional investors, pension funds or insurance companies whose primary objective is long-term stability rather than maximum risk-adjusted return.
+The results show that Stochastic Optimization generated the lowest annualized portfolio volatility among all tested approaches. Although this came at the cost of lower annualized returns than the Equal Weight benchmark, the model still achieved the second-highest Sharpe Ratio of all portfolio construction methods.
 
 ---
 
 ### Overall Interpretation
 
-The empirical results suggest that no portfolio construction method was universally superior. The Equal Weight portfolio benefited from its complete independence from parameter estimation and achieved the highest out-of-sample Sharpe Ratio. In contrast, the optimization-based approaches attempted to exploit forecasted return information and explicitly account for uncertainty, but remained dependent on the quality of the underlying return forecasts.
+The Equal Weight portfolio benefited from its complete independence from parameter estimation and achieved the highest out-of-sample Sharpe Ratio. In contrast, the optimization-based approaches attempted to exploit forecasted return information and explicitly account for uncertainty, but remained dependent on the quality of the underlying return forecasts.
+
+From an economic perspective, Stochastic Optimization may therefore represent the most attractive solution for highly risk-averse investors, pension funds, insurance companies and other long-term allocators whose primary objective is capital preservation and portfolio stability rather than maximizing expected return.
+
 
 
