@@ -107,15 +107,15 @@ Classical Markowitz portfolio optimization.
 
 ### Ellipsoidal Robust Optimization (ELL)
 
-Accounts explicitly for uncertainty in expected return estimates.
+Explicitly accounts for uncertainty in expected return estimates by optimizing against adverse parameter realizations.
 
 ### Distributionally Robust Optimization (DRO)
 
-Protects against uncertainty in the underlying return distribution.
+Protects against uncertainty in the underlying return distribution by considering multiple plausible probability distributions.
 
 ### Stochastic Optimization (STOCH)
 
-Optimizes portfolio performance across multiple simulated market scenarios.
+Optimizes portfolio allocation across multiple future market scenarios rather than a single expected outcome.
 
 ---
 
