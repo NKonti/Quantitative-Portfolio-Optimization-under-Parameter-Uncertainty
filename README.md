@@ -237,34 +237,29 @@ Mean-Variance Optimization allocates capital according to the forecasted risk-re
 The model assumes that forecasted expected returns contain sufficiently accurate information to justify overweighting and underweighting individual assets. In practice, however, expected returns are notoriously difficult to estimate and forecasting errors can dominate the optimization process. As a result, the theoretically optimal allocation may become suboptimal once implemented on unseen future data.
 
 ---
-
 #### Ellipsoidal Robust Optimization (ELL)
 
-Ellipsoidal Robust Optimization explicitly acknowledges parameter uncertainty by assuming that expected returns lie within a predefined uncertainty set. Rather than optimizing for a single estimated return vector, the model seeks a portfolio that performs reasonably well across a range of plausible return realizations.
+Ellipsoidal Robust Optimization explicitly accounts for uncertainty in estimated expected returns. The model assumes that the true expected return vector is not known exactly but lies within an ellipsoidal uncertainty set around the forecasted return vector. Rather than optimizing for a single point estimate, the optimizer seeks a portfolio that remains effective across a range of plausible forecast realizations.
 
-As a consequence, the optimizer adopts a more conservative allocation and penalizes portfolios that are highly dependent on specific return forecasts. While this improves robustness against estimation errors, it may also reduce exposure to genuinely attractive investment opportunities, resulting in lower realized returns.
-
-The empirical results indicate that the reduction in forecast sensitivity was not sufficient to fully compensate for the loss of return potential associated with the additional robustness penalty.
+As a consequence, portfolios whose attractiveness depends heavily on individual return forecasts are penalized. This increases robustness against estimation error but may also reduce exposure to genuinely attractive investment opportunities. The empirical results suggest that the reduction in forecast sensitivity was not sufficient to fully compensate for the loss of return potential associated with the additional robustness penalty.
 
 ---
 
 #### Distributionally Robust Optimization (DRO)
 
-Distributionally Robust Optimization extends the concept of robustness beyond the expected return vector and explicitly accounts for uncertainty in the entire return distribution.
+Distributionally Robust Optimization extends the concept of robustness beyond uncertainty in expected returns. While Ellipsoidal Robust Optimization primarily addresses uncertainty in the expected return vector, Distributionally Robust Optimization additionally accounts for the possibility that the entire underlying return distribution has been estimated incorrectly.
 
-Rather than protecting only against errors in expected returns, the model seeks allocations that remain resilient under a broad range of possible probability distributions. Consequently, the resulting portfolios tend to be even more conservative and place a stronger emphasis on stability and protection against adverse scenarios.
-
-While this approach reduces exposure to model misspecification and distributional uncertainty, it also limits the optimizer's ability to exploit forecasted return opportunities. In the present study, the additional robustness reduced portfolio flexibility and ultimately resulted in lower risk-adjusted performance than the Equal Weight benchmark.
+The optimizer therefore favors portfolios that remain stable across a broader set of plausible probability distributions. This typically results in even more conservative allocations and a stronger emphasis on protection against model misspecification and adverse market conditions. While the additional robustness reduces sensitivity to distributional uncertainty, it simultaneously limits the optimizer's ability to exploit forecasted return opportunities. In this study, the cost of the additional conservatism outweighed its benefits, resulting in lower risk-adjusted performance than the Equal Weight benchmark.
 
 ---
 
 #### Stochastic Optimization (STOCH)
 
-Stochastic Optimization differs fundamentally from the robust optimization frameworks. Instead of optimizing against a worst-case realization of uncertain parameters, the model constructs a large set of plausible future scenarios and seeks a portfolio that performs well on average across those scenarios.
+Stochastic Optimization differs fundamentally from robust optimization frameworks. Rather than optimizing against a worst-case realization within an uncertainty set, the model constructs a large collection of plausible future return scenarios and seeks a portfolio that performs well on average across those scenarios.
 
-The optimization therefore balances expected return and risk across many potential future market environments rather than focusing on a single forecast or a predefined uncertainty set. This generally leads to more diversified and stable allocations, as the portfolio is designed to remain effective under a variety of market conditions.
+The optimization therefore balances expected return and risk directly across many potential future market environments. As a result, the portfolio construction process is not driven by a single forecast or a predefined worst-case assumption, but instead by the overall distribution of potential outcomes. This generally leads to more stable and diversified allocations that remain effective across a wider range of market conditions.
 
-The results show that Stochastic Optimization generated the lowest annualized portfolio volatility among all tested approaches. Although this came at the cost of lower annualized returns than the Equal Weight benchmark, the model still achieved the second-highest Sharpe Ratio of all portfolio construction methods.
+The results show that Stochastic Optimization achieved the lowest annualized portfolio volatility among all tested approaches. This outcome is consistent with the model structure, as the dispersion of portfolio returns across all scenarios enters the optimization process directly. Although the reduction in volatility came at the cost of lower annualized returns than the Equal Weight benchmark, the model still achieved the second-highest Sharpe Ratio of all portfolio construction methods. This suggests that the scenario-based framework was particularly effective at controlling portfolio risk while preserving a competitive level of risk-adjusted performance.
 
 ---
 
