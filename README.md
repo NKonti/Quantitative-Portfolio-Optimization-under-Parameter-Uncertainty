@@ -208,6 +208,16 @@ As a robustness check, the portfolio optimization framework was also evaluated u
 
 ### Results (XGBoost Forecasts)
 
+Parameters:
+
+* learning_rate = 0.03
+* max_depth = 1
+* n_estimators = 500
+* subsample = 0.8
+* colsample_bytree = 0.8
+* reg_alpha = 1.0
+* reg_lambda = 1.0
+
 | Rank | Model                           | Annualized Return | Annualized Volatility | Sharpe Ratio |
 | ---- | ------------------------------- | ----------------- | --------------------- | ------------ |
 | 1    | Equal Weight (EQ)               | 9.16%             | 10.41%                | 0.880        |
