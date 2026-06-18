@@ -103,19 +103,19 @@ Simple diversification across all assets.
 
 ### Mean-Variance Optimization (MV)
 
-Classical Markowitz portfolio optimization.
+Optimizes the trade-off between forecasted expected return and portfolio variance.
 
 ### Ellipsoidal Robust Optimization (ELL)
 
-Accounts for estimation uncertainty in expected returns by adding a robustness penalty based on an ellipsoidal uncertainty set.
+Adds a robustness penalty based on expected-return estimation uncertainty.
 
 ### Distributionally Robust Optimization (DRO)
 
-Uses a covariance-based robustness penalty to reduce sensitivity to distributional uncertainty in asset returns.
+Adds a robustness penalty based on overall return uncertainty.
 
 ### Stochastic Optimization (STOCH)
 
-Optimizes portfolio weights across multiple historical return scenarios by balancing expected scenario return and scenario volatility.
+Optimizes portfolio weights across historical return scenarios by balancing scenario-based expected return and scenario volatility.
 
 ---
 
