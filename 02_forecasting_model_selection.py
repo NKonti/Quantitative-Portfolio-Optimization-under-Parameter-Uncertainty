@@ -2,12 +2,12 @@
 # QUANT PROJECT - FORECASTING MODEL SELECTION
 # TRAIN / VALIDATION / TEST + SMALL GRID SEARCH
 # ============================================================
-# Ziel:
-# 1) Absolute Return Forecasting
-# 2) OLS, Random Forest und XGBoost vergleichen
-# 3) Hyperparameter nur auf Validation auswählen
-# 4) Test Set unangetastet lassen
-# 5) Bestes Modell als Expected-Return-Schätzer auswählen
+# Objective:
+# 1) Forecast absolute next-period returns
+# 2) Compare OLS, Random Forest, and XGBoost
+# 3) Select hyperparameters using the validation set only
+# 4) Keep the test set completely untouched
+# 5) Select the best-performing model as the expected return estimator
 # ============================================================
 
 import warnings
