@@ -220,11 +220,7 @@ Parameters:
 
 #### Equal Weight Portfolio (EQ)
 
-The Equal Weight portfolio serves as the naïve diversification benchmark and allocates capital uniformly across all available assets:
-
-```text
-w_i = 1 / n
-```
+The Equal Weight portfolio serves as the naïve diversification benchmark and allocates capital uniformly across all available assets.
 
 Unlike the optimization-based approaches, Equal Weight does not rely on expected return forecasts, covariance estimates or uncertainty sets. As a result, it is largely immune to estimation errors in both expected returns and risk parameters.
 
