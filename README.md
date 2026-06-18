@@ -115,7 +115,7 @@ Optimizes against adverse return distributions within a distributional ambiguity
 
 ### Stochastic Optimization (STOCH)
 
-Optimizes portfolio weights across multiple historical return scenarios without imposing a predefined worst-case uncertainty set.
+Optimizes portfolio weights by maximizing expected return across multiple return scenarios while controlling scenario volatility.
 
 ---
 
