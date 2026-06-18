@@ -4,7 +4,7 @@
 
 Portfolio optimization is a fundamental problem in quantitative finance. Classical portfolio theory assumes that future expected returns and risks are known. In practice, however, expected returns must be estimated from historical data and are therefore subject to substantial forecasting uncertainty.
 
-This project investigates whether advanced portfolio optimization techniques can outperform simple diversification when expected returns are estimated using machine learning models rather than assumed to be known.
+This project investigates whether advanced portfolio optimization techniques can outperform simple diversification when expected returns are estimated rather than known.
 
 The framework combines:
 
@@ -95,7 +95,7 @@ Model selection was initially performed using a dedicated validation period.
 | 2    | Random Forest | 0.057445 | 0.040091 | 0.033891 | -0.007626   |
 | 3    | OLS           | 0.057557 | 0.040205 | 0.026253 | 0.025204    |
 
-XGBoost achieved the strongest validation performance and was therefore selected as the leading candidate model during the model selection stage.
+XGBoost achieved the strongest validation performance and was therefore selected as the leading candidate during the model selection stage.
 
 ### Independent Test Results (2023–2026)
 
@@ -111,11 +111,10 @@ Although XGBoost achieved the strongest validation performance, Random Forest de
 
 ### Final Forecasting Model
 
-The primary portfolio optimization analysis uses Random Forest forecasts because Random Forest demonstrated the strongest independent out-of-sample forecasting performance.
+The final forecasting model selected for portfolio construction was Random Forest.
 
-Selected model:
+Selected parameters:
 
-* Random Forest
 * max_depth = 2
 * min_samples_leaf = 10
 * n_estimators = 200
@@ -124,7 +123,7 @@ Selected model:
 
 Monthly ETF returns proved difficult to predict using historical momentum, volatility, and drawdown information.
 
-While XGBoost achieved the strongest validation performance, Random Forest delivered the strongest independent out-of-sample forecasting performance and was therefore selected as the primary forecasting model.
+While XGBoost achieved the strongest validation performance, Random Forest delivered the strongest independent out-of-sample forecasting performance and was therefore selected for the portfolio construction stage.
 
 ---
 
@@ -182,7 +181,7 @@ All reported results are strictly out-of-sample.
 
 ---
 
-## Results (Random Forest Forecasts)
+## Results
 
 Forecast Model: Random Forest
 
@@ -192,41 +191,13 @@ Parameters:
 * min_samples_leaf = 10
 * n_estimators = 200
 
-| Rank | Model                           | Annualized Return | Annualized Volatility | Sharpe Ratio |
-| ---- | ------------------------------- | ----------------- | --------------------- | ------------ |
-| 1    | Equal Weight (EQ)               | 9.16%             | 10.41%                | 0.880        |
-| 2    | Stochastic Optimization (STOCH) | 6.03%             | 7.61%                 | 0.792        |
-| 3    | Distributionally Robust (DRO)   | 6.92%             | 9.85%                 | 0.703        |
-| 4    | Mean-Variance (MV)              | 7.83%             | 11.41%                | 0.686        |
-| 5    | Ellipsoidal Robust (ELL)        | 7.35%             | 10.83%                | 0.678        |
-
----
-
-## Forecast Model Sensitivity Analysis
-
-As a robustness check, the portfolio optimization framework was also evaluated using XGBoost forecasts.
-
-### Results (XGBoost Forecasts)
-
-Parameters:
-
-* learning_rate = 0.03
-* max_depth = 1
-* n_estimators = 500
-* subsample = 0.8
-* colsample_bytree = 0.8
-* reg_alpha = 1.0
-* reg_lambda = 1.0
-
-| Rank | Model                           | Annualized Return | Annualized Volatility | Sharpe Ratio |
-| ---- | ------------------------------- | ----------------- | --------------------- | ------------ |
-| 1    | Equal Weight (EQ)               | 9.16%             | 10.41%                | 0.880        |
-| 2    | Mean-Variance (MV)              | 8.76%             | 10.41%                | 0.841        |
-| 3    | Ellipsoidal Robust (ELL)        | 8.24%             | 9.85%                 | 0.837        |
-| 4    | Stochastic Optimization (STOCH) | 6.22%             | 7.46%                 | 0.834        |
-| 5    | Distributionally Robust (DRO)   | 7.57%             | 9.11%                 | 0.830        |
-
-Across both forecasting specifications, the Equal Weight benchmark remained the best-performing portfolio on a risk-adjusted basis. This suggests that the central findings are robust to changes in the forecasting model used to estimate expected returns.
+| Rank | Model                                      | Annualized Return | Annualized Volatility | Sharpe Ratio |
+| ---- | ------------------------------------------ | ----------------- | --------------------- | ------------ |
+| 1    | Equal Weight (EQ)                          | 9.16%             | 10.41%                | 0.880        |
+| 2    | Stochastic Optimization (STOCH)            | 6.03%             | 7.61%                 | 0.792        |
+| 3    | Distributionally Robust Optimization (DRO) | 6.92%             | 9.85%                 | 0.703        |
+| 4    | Mean-Variance Optimization (MV)            | 7.83%             | 11.41%                | 0.686        |
+| 5    | Ellipsoidal Robust Optimization (ELL)      | 7.35%             | 10.83%                | 0.678        |
 
 ---
 
@@ -247,16 +218,14 @@ Across both forecasting specifications, the Equal Weight benchmark remained the 
 
 The results do not support the existence of a universally superior portfolio construction method under parameter uncertainty.
 
-Across all tested optimization frameworks, the Equal Weight portfolio achieved the highest out-of-sample Sharpe Ratio and consistently generated the strongest risk-adjusted performance. This result highlights the remarkable robustness of simple diversification when expected returns must be estimated rather than known.
+Expected returns were first estimated using a Random Forest forecasting model and subsequently incorporated into several advanced portfolio optimization frameworks. Despite the use of machine-learning-based forecasts and sophisticated optimization techniques, none of the optimized portfolios consistently outperformed the naive Equal Weight benchmark on a risk-adjusted basis.
 
-While advanced optimization techniques incorporated forecasts, covariance estimates, transaction costs, turnover constraints, and robustness adjustments, none of the optimized portfolios were able to consistently outperform the naive Equal Weight benchmark on a risk-adjusted basis.
+Across all tested approaches, the Equal Weight portfolio achieved the highest out-of-sample Sharpe Ratio of 0.880 and generated the strongest risk-adjusted performance over the observation period. This finding highlights the remarkable robustness of simple diversification when expected returns must be estimated rather than assumed to be known.
 
-Among the optimization-based approaches, Stochastic Optimization achieved the strongest Sharpe Ratio and the lowest volatility under the Random Forest forecasting specification. Mean-Variance, Ellipsoidal Robust, and Distributionally Robust Optimization produced intermediate results, reflecting different trade-offs between expected return and risk control.
+Among the optimization-based approaches, Stochastic Optimization delivered the strongest performance, achieving a Sharpe Ratio of 0.792 while simultaneously generating the lowest portfolio volatility. Distributionally Robust Optimization, Mean-Variance Optimization, and Ellipsoidal Robust Optimization produced weaker risk-adjusted results despite explicitly accounting for estimation uncertainty.
 
-An additional finding of the study is that improvements in forecasting accuracy do not necessarily translate into superior portfolio performance. Although Random Forest achieved the strongest forecasting performance on the independent test set, the resulting optimized portfolios still failed to outperform the Equal Weight benchmark. This observation further illustrates the challenges associated with parameter uncertainty in practical portfolio optimization.
+The findings suggest that parameter uncertainty remains a major challenge in practical portfolio construction. Even when expected returns are generated using machine-learning forecasts, advanced optimization techniques remain highly sensitive to estimation error.
 
-The robustness analysis using XGBoost forecasts led to the same overarching conclusion: Equal Weight remained the strongest portfolio on a risk-adjusted basis despite noticeable changes in the relative ranking of the optimization-based approaches.
+Consequently, the choice of portfolio construction method should be aligned with the investor's objectives and risk preferences rather than with the expectation that increasingly sophisticated optimization techniques will automatically generate superior investment outcomes.
 
-Overall, the findings suggest that portfolio optimization remains highly sensitive to estimation error and forecasting uncertainty. Consequently, the choice of portfolio construction method should be aligned with the investor's objectives, risk tolerance, and confidence in return forecasts rather than with a single optimization framework.
-
-The results provide empirical support for the view that simple diversification remains a highly competitive benchmark, even when advanced forecasting and optimization techniques are employed.
+Overall, the study provides empirical evidence that simple diversification remains a highly competitive benchmark, even when advanced forecasting models and portfolio optimization frameworks are employed.
