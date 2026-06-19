@@ -255,7 +255,7 @@ The optimizer therefore favors portfolios that remain stable across a broader se
 
 #### Stochastic Optimization (STOCH)
 
-Stochastic Optimization differs fundamentally from robust optimization frameworks. Rather than optimizing against a worst-case realization within an uncertainty set, the model constructs a large collection of plausible future return scenarios and seeks a portfolio that performs well on average across those scenarios.
+Stochastic Optimization addresses uncertainty through a scenario-based framework. Rather than optimizing against a worst-case realization within an uncertainty set, the model constructs a large collection of plausible future return scenarios and seeks a portfolio that performs well on average across those scenarios.
 
 The optimization therefore balances expected return and risk directly across many potential future market environments. As a result, the portfolio construction process is not driven by a single forecast or a predefined worst-case assumption, but instead by the overall distribution of potential outcomes. This generally leads to more stable and diversified allocations that remain effective across a wider range of market conditions.
 
