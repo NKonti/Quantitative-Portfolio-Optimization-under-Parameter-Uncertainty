@@ -269,5 +269,12 @@ The Equal Weight portfolio benefited from its complete independence from paramet
 
 From an economic perspective, Stochastic Optimization may therefore represent the most attractive solution for highly risk-averse investors, pension funds, insurance companies and other long-term allocators whose primary objective is capital preservation and portfolio stability rather than maximizing expected return.
 
+## Limitations and Future Research
+
+The objective of this project was not to identify the theoretically optimal portfolio construction framework, but rather to compare several widely used optimization approaches under realistic return forecasting uncertainty.
+
+The implemented Mean-Variance, Ellipsoidal Robust and Distributionally Robust Optimization models represent simplified and computationally tractable formulations that are frequently used in academic and practitioner settings. However, more advanced formulations exist and may potentially improve portfolio performance.
+
+Consequently, the results of this study should not be interpreted as evidence that sophisticated optimization techniques are inherently inferior to naive diversification. Instead, the findings suggest that under the specific model formulations, forecasting framework and dataset considered in this study, the benefits of additional optimization complexity were not sufficient to consistently overcome estimation uncertainty.
 
 
